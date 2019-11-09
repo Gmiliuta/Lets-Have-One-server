@@ -13,4 +13,4 @@ app
   .use(router.routes());
 
 
-app.listen({port: process.env.PORT || PORT }, () => console.log(`KOA server is running on http://localhost:${PORT}/`));
+app.listen({port: process.env.PORT || 3001 }, () => console.log(`KOA server is running on http://localhost:${PORT}/`));
