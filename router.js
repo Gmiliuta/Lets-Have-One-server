@@ -1,14 +1,18 @@
 const Router = require('koa-router');
-const contoller = require('./controllers/controller');
+const controller = require('./controllers/controller');
 
 const router = new Router();
 
 
-router.get('/getBarsData', contoller.getBarsData);
-router.post('/postBeerData', contoller.postBeers);
+router.get('/getBarsData', controller.getBarsData);
+router.post('/postBeerData', controller.postBeers);
 
-router.get('/getMapsData', contoller.getMapsData);
-router.post('/postGoogleMapsData', contoller.postMapsData);
+router.get('/getMapsData', controller.getMapsData);
+router.post('/postGoogleMapsData', controller.postMapsData);
+
+router.get('/getOneBeer/:beerName', controller.getOneBeer);
+router.get('/getBeersData', controller.getBeersData);
+router.post('/postBeersData', controller.postBeersData);
 
 
 module.exports = router;

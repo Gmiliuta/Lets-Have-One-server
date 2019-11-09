@@ -1,5 +1,6 @@
 const BarsAndBeersData = require('../models/BarsAndBeersData');
 const GoogleMapsData = require('../models/GoogleMapsData');
+const DetailedBeersData = require('../models/BeersDetailedData');
 
 // getting and posting my data
 exports.getBarsData = async (ctx) => {
@@ -53,3 +54,42 @@ exports.postMapsData = async (ctx) => {
     console.log('Please check your postMapsData function!')
   }
 }
+
+// getting and posting detailedBeer information
+
+exports.getOneBeer = async (ctx) => {
+  try {
+    const beerName = ctx.params.beerName.includes('   ') ? ctx.params.beerName.replace('   ', '/') : ctx.params.beerName;
+    const beer = await DetailedBeersData.findOne({name: beerName })
+    ctx.status = 200;
+    ctx.body = beer;
+  } catch (error) {
+    ctx.status = 500;
+    console.log('Please check your getOneBeer func in controllers!')
+  }
+};
+
+exports.getBeersData = async (ctx) => {
+  try {
+    const allData = await DetailedBeersData.find({});
+    ctx.status = 200;
+    ctx.body = allData;
+  } catch (error) {
+    ctx.status = 500;
+    console.log('Please check your getBeersDetailed func in controllers!');
+  }
+};
+
+exports.postBeersData = async (ctx) => {
+  try {
+    let data = ctx.request.body;
+    data.sort((a, b) => a.name > b.name ? 1 : -1);
+    await data.forEach(({description, image, name, str, style, brewedBy, rating}) => {
+      DetailedBeersData.create({description, image, name, str, style, brewedBy, rating});
+    });
+    ctx.status = 201;
+  } catch (error) {
+    ctx.status = 500;
+    console.log('Please check your postBeersDetailed function!');
+  }
+};
