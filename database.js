@@ -1,6 +1,9 @@
+require("dotenv").config();
+
+
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://Gmiliuta:LpSSvnbXy7RXeFd@letshaveonecluster-x30gt.mongodb.net/Lets_Have_One_DB?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONDGODB, {
   useNewUrlParser:true,
   useUnifiedTopology: true
 }, () => {
