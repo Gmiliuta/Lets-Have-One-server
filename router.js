@@ -14,6 +14,8 @@ router.get('/getOneBeer/:beerName', controller.getOneBeer);
 router.get('/getBeersData', controller.getBeersData);
 router.post('/postBeersData', controller.postBeersData);
 
+router.post('/postBarsDataByCust', controller.postBarsDataByCust);
+
 
 
 module.exports = router;

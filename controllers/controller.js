@@ -1,6 +1,7 @@
 const BarsAndBeersData = require('../models/BarsAndBeersData');
 const GoogleMapsData = require('../models/GoogleMapsData');
 const DetailedBeersData = require('../models/BeersDetailedData');
+const BarsDataByCust = require('../models/BarsDataAddedByCust');
 
 // getting and posting my data
 exports.getBarsData = async (ctx) => {
@@ -43,10 +44,8 @@ exports.getMapsData = async (ctx) => {
 
 
 exports.postMapsData = async (ctx) => {
-  console.log(ctx.request.body);
   try {
     const { formatted_address, geometry, icon, name, photos, place_id }  = ctx.request.body;
-    console.log(geometry);
     await GoogleMapsData.create({formatted_address, geometry: geometry.location, icon, name, photos, place_id });
     ctx.status = 201;
   } catch (error) {
@@ -93,3 +92,18 @@ exports.postBeersData = async (ctx) => {
     console.log('Please check your postBeersDetailed function!');
   }
 };
+
+exports.postBarsDataByCust = async (ctx) => {
+  try {
+    const custBarsData  = ctx.request.body;
+    custBarsData.beerSelection = custBarsData.beerSelection.split(',');
+    custBarsData.beerTypes = custBarsData.beerTypes.split(',');
+    custBarsData.houseBeerPrice = Number(custBarsData.houseBeerPrice);
+    await BarsDataByCust.create({name: custBarsData.barName, house_beer_price: custBarsData.houseBeerPrice, beers: custBarsData.beerSelection, types: custBarsData.beerTypes})
+    ctx.status = 201;
+  } catch (error) {
+    ctx.status = 500;
+    console.log('Please check your postBarsDataByCust function!')
+  }
+
+}
