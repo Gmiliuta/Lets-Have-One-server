@@ -37,7 +37,7 @@ Please also see Front-End of this application : [Let's Have One-FrontEnd](https:
 
 * [Node.js](https://nodejs.org) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 * [Koa](https://koajs.com/) - Next generation web framework for Node.js.
-* [MongoDB](https://www.mongodb.com) - MongoDB is a cross-platform document-oriented database program. Classified as a NoSQL database program.
+* [MongoDB](https://www.mongodb.com) - MongoDB is a cross-platform document-oriented database program. Classified as a NoSQL.
 * [Mongoose](https://mongoosejs.com) - Elegant MongoDB object modeling for Node.js.
 
 ## Developer 
